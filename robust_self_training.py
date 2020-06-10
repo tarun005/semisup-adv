@@ -7,6 +7,7 @@ https://github.com/yaodongyu/TRADES
 import os
 import sys
 import argparse
+import pdb
 
 import torch
 import torch.nn.functional as F
@@ -29,6 +30,8 @@ from autoaugment import CIFAR10Policy
 from cutout import Cutout
 
 import logging
+
+os.environ["CUDA_VISIBLE_DEVICES"]= "6" #str(args.gpu)
 
 
 # ----------------------------- CONFIGURATION ----------------------------------
@@ -202,22 +205,6 @@ elif args.dataset == 'svhn':
     # image
     transform_train = transforms.ToTensor()
 
-if args.autoaugment or args.cutout:
-    assert (args.dataset == 'cifar10')
-    transform_list = [
-        transforms.RandomCrop(32, padding=4, fill=128),
-        # fill parameter needs torchvision installed from source
-        transforms.RandomHorizontalFlip()]
-    if args.autoaugment:
-        transform_list.append(CIFAR10Policy())
-    transform_list.append(transforms.ToTensor())
-    if args.cutout:
-        transform_list.append(Cutout(n_holes=1, length=16))
-
-    transform_train = transforms.Compose(transform_list)
-    logger.info('Applying aggressive training augmentation: %s'
-                % transform_train)
-
 transform_test = transforms.Compose([
     transforms.ToTensor()])
 # ------------------------------------------------------------------------------
@@ -226,7 +213,7 @@ transform_test = transforms.Compose([
 trainset = SemiSupervisedDataset(base_dataset=args.dataset,
                                  add_svhn_extra=args.svhn_extra,
                                  root=args.data_dir, train=True,
-                                 download=True, transform=transform_train,
+                                 transform=transform_train,
                                  aux_data_filename=args.aux_data_filename,
                                  add_aux_labels=not args.remove_pseudo_labels,
                                  aux_take_amount=args.aux_take_amount)
@@ -238,14 +225,16 @@ train_batch_sampler = SemiSupervisedSampler(
     trainset.sup_indices, trainset.unsup_indices,
     args.batch_size, args.unsup_fraction,
     num_batches=int(np.ceil(50000 / args.batch_size)))
-epoch_size = len(train_batch_sampler) * args.batch_size
+# epoch_size = len(train_batch_sampler) * args.batch_size
 
 kwargs = {'num_workers': 1, 'pin_memory': True} if use_cuda else {}
-train_loader = DataLoader(trainset, batch_sampler=train_batch_sampler, **kwargs)
+# train_loader = DataLoader(trainset, batch_sampler=train_batch_sampler, **kwargs)
+train_loader = DataLoader(trainset, batch_size=args.batch_size, drop_last=False,
+                                shuffle=True, **kwargs)
+epoch_size = len(train_loader) * args.batch_size
 
 testset = SemiSupervisedDataset(base_dataset=args.dataset,
                                 root=args.data_dir, train=False,
-                                download=True,
                                 transform=transform_test)
 test_loader = DataLoader(testset, batch_size=args.test_batch_size,
                          shuffle=False, **kwargs)
@@ -254,7 +243,7 @@ trainset_eval = SemiSupervisedDataset(
     base_dataset=args.dataset,
     add_svhn_extra=args.svhn_extra,
     root=args.data_dir, train=True,
-    download=True, transform=transform_train)
+    transform=transform_train)
 
 eval_train_loader = DataLoader(trainset_eval, batch_size=args.test_batch_size,
                                shuffle=True, **kwargs)
@@ -270,9 +259,10 @@ def train(args, model, device, train_loader, optimizer, epoch):
     train_metrics = []
     epsilon = args.epsilon
     for batch_idx, (data, target) in enumerate(train_loader):
-        data, target = data.to(device), target.to(device)
 
+        data, target = data.to(device), target.to(device)
         optimizer.zero_grad()
+
 
         # calculate robust loss
         if args.loss == 'trades':
@@ -314,7 +304,7 @@ def train(args, model, device, train_loader, optimizer, epoch):
         if batch_idx % args.log_interval == 0:
             logging.info(
                 'Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
-                    epoch, batch_idx * len(data), epoch_size,
+                    epoch, min(batch_idx * args.batch_size , epoch_size), epoch_size,
                            100. * batch_idx / len(train_loader), loss.item()))
 
     return train_metrics
@@ -334,6 +324,7 @@ def eval(args, model, device, eval_set, loader):
             data, target = data.to(device), target.to(device)
             data, target = data[target != -1], target[target != -1]
             output = model(data)
+
             loss += F.cross_entropy(output, target, reduction='sum').item()
             pred = output.max(1, keepdim=True)[1]
             correct += pred.eq(target.view_as(pred)).sum().item()
@@ -450,7 +441,7 @@ def main():
         train_df = train_df.append(pd.DataFrame(train_data), ignore_index=True)
 
         # evaluation on natural examples
-        logging.info(120 * '=')
+        logging.info(80 * '=')
         if epoch % args.eval_freq == 0 or epoch == args.epochs:
             eval_data = {'epoch': int(epoch)}
             eval_data.update(
@@ -458,7 +449,7 @@ def main():
             eval_data.update(
                 eval(args, model, device, 'test', eval_test_loader))
             eval_df = eval_df.append(pd.Series(eval_data), ignore_index=True)
-            logging.info(120 * '=')
+            logging.info(80 * '=')
 
         # save stats
         train_df.to_csv(os.path.join(model_dir, 'stats_train.csv'))

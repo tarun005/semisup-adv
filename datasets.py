@@ -2,7 +2,8 @@
 Datasets with unlabeled (or pseudo-labeled) data
 """
 
-from torchvision.datasets import CIFAR10, SVHN
+from torchvision.datasets import CIFAR10
+from svhn import SVHN
 from torch.utils.data import Sampler, Dataset
 import torch
 import numpy as np
@@ -12,15 +13,15 @@ import pickle
 
 import logging
 
-DATASETS = ['cifar10', 'svhn']
+DATASETS = ['cifar10', 'svhn' , "syndigit"]
 
 
 class SemiSupervisedDataset(Dataset):
     def __init__(self,
-                 base_dataset='cifar10',
+                 base_dataset='svhn',
                  take_amount=None,
                  take_amount_seed=13,
-                 add_svhn_extra=False,
+                 add_svhn_extra=True,
                  aux_data_filename=None,
                  add_aux_labels=False,
                  aux_take_amount=None,
@@ -28,23 +29,37 @@ class SemiSupervisedDataset(Dataset):
                  **kwargs):
         """A dataset with auxiliary pseudo-labeled data"""
 
-        if base_dataset == 'cifar10':
-            self.dataset = CIFAR10(train=train, **kwargs)
-        elif base_dataset == 'svhn':
+
+        if base_dataset == 'svhn':
             if train:
                 self.dataset = SVHN(split='train', **kwargs)
             else:
                 self.dataset = SVHN(split='test', **kwargs)
-            # because torchvision is annoying
-            self.dataset.targets = self.dataset.labels
-            self.targets = list(self.targets)
 
-            if train and add_svhn_extra:
-                svhn_extra = SVHN(split='extra', **kwargs)
-                self.data = np.concatenate([self.data, svhn_extra.data])
-                self.targets.extend(svhn_extra.labels)
+        # elif base_dataset == 'mnist_m':
+        #     if train:
+        #         self.dataset = MNIST_M(split='train', **kwargs)
+        #     else:
+        #         self.dataset = MNIST_M(split='test', **kwargs)
+
+        # elif base_dataset == "syndigit" :
+        #     if train:
+        #         self.dataset = SynDigit(split="train" , **kwargs)
+        #     else:
+        #         self.dataset = SynDigit(split="test" , **kwargs)
+
         else:
             raise ValueError('Dataset %s not supported' % base_dataset)
+
+        # because torchvision is annoying
+        self.dataset.targets = self.dataset.labels
+        self.targets = list(self.targets)
+
+        if train and add_svhn_extra:
+            svhn_extra = SVHN(split='svhn_aug', **kwargs)
+            self.data = np.concatenate([self.data, svhn_extra.data])
+            self.targets.extend(svhn_extra.labels)
+        
         self.base_dataset = base_dataset
         self.train = train
 
@@ -104,7 +119,7 @@ class SemiSupervisedDataset(Dataset):
                     range(orig_len, orig_len+len(aux_data)))
 
             logger = logging.getLogger()
-            logger.info("Training set")
+            logger.info("--Training set--")
             logger.info("Number of training samples: %d", len(self.targets))
             logger.info("Number of supervised samples: %d",
                         len(self.sup_indices))
@@ -120,7 +135,7 @@ class SemiSupervisedDataset(Dataset):
             self.unsup_indices = []
 
             logger = logging.getLogger()
-            logger.info("Test set")
+            logger.info("--Test set--")
             logger.info("Number of samples: %d", len(self.targets))
             logger.info("Label histogram: %s",
                         tuple(
