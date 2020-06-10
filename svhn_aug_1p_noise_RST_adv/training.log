@@ -1,0 +1,95 @@
+2020-06-10 00:37:41,146 | Robust self-training
+2020-06-10 00:37:41,146 | Args: Namespace(autoaugment=False, aux_data_filename=None, aux_take_amount=None, batch_size=300, beta=6.0, cutout=False, data_dir='/newfoundland/tarun/datasets/Digits/SVHN/', dataset='svhn', distance='l_inf', entropy_weight=0.0, epochs=120, epsilon=0.031, eval_attack_batches=1, eval_freq=4, log_interval=5, loss='trades', lr=0.1, lr_schedule='cosine', model='wrn-40-2', model_dir='svhn_aug_1p_noise_RST_adv', momentum=0.9, nesterov=True, normalize_input=False, overwrite=False, pgd_num_steps=10, pgd_step_size=0.007, remove_pseudo_labels=False, save_freq=25, seed=1, svhn_extra=True, test_batch_size=512, train_eval_batches=None, unsup_fraction=0.5, weight_decay=0.0005)
+2020-06-10 00:38:15,900 | Robust self-training
+2020-06-10 00:38:15,900 | Args: Namespace(autoaugment=False, aux_data_filename=None, aux_take_amount=None, batch_size=300, beta=6.0, cutout=False, data_dir='/newfoundland/tarun/datasets/Digits/SVHN/', dataset='svhn', distance='l_inf', entropy_weight=0.0, epochs=120, epsilon=0.031, eval_attack_batches=1, eval_freq=4, log_interval=5, loss='trades', lr=0.1, lr_schedule='cosine', model='wrn-40-2', model_dir='svhn_aug_1p_noise_RST_adv', momentum=0.9, nesterov=True, normalize_input=False, overwrite=False, pgd_num_steps=10, pgd_step_size=0.007, remove_pseudo_labels=False, save_freq=25, seed=1, svhn_extra=True, test_batch_size=512, train_eval_batches=None, unsup_fraction=0.5, weight_decay=0.0005)
+2020-06-10 00:38:19,556 | --Training set--
+2020-06-10 00:38:19,556 | Number of training samples: 604388
+2020-06-10 00:38:19,557 | Number of supervised samples: 604388
+2020-06-10 00:38:19,557 | Number of unsup samples: 0
+2020-06-10 00:38:19,614 | Label (and pseudo-label) histogram: ((0, 50618), (1, 104937), (2, 85266), (3, 68669), (4, 57940), (5, 60356), (6, 47414), (7, 49451), (8, 40483), (9, 39254))
+2020-06-10 00:38:19,614 | Shape of training data: (604388, 3, 32, 32)
+2020-06-10 00:38:20,249 | --Test set--
+2020-06-10 00:38:20,249 | Number of samples: 26032
+2020-06-10 00:38:20,252 | Label histogram: ((0, 1744), (1, 5099), (2, 4149), (3, 2882), (4, 2523), (5, 2384), (6, 1977), (7, 2019), (8, 1660), (9, 1595))
+2020-06-10 00:38:20,252 | Shape of data: (26032, 3, 32, 32)
+2020-06-10 00:38:23,745 | --Training set--
+2020-06-10 00:38:23,746 | Number of training samples: 604388
+2020-06-10 00:38:23,746 | Number of supervised samples: 604388
+2020-06-10 00:38:23,746 | Number of unsup samples: 0
+2020-06-10 00:38:23,802 | Label (and pseudo-label) histogram: ((0, 50618), (1, 104937), (2, 85266), (3, 68669), (4, 57940), (5, 60356), (6, 47414), (7, 49451), (8, 40483), (9, 39254))
+2020-06-10 00:38:23,802 | Shape of training data: (604388, 3, 32, 32)
+2020-06-10 00:38:25,860 | Setting learning rate to 0.1
+2020-06-10 00:38:29,473 | Train Epoch: 1 [0/604500 (0%)]	Loss: 2.352959
+2020-06-10 00:38:35,383 | Train Epoch: 1 [1500/604500 (0%)]	Loss: 2.266495
+2020-06-10 00:38:41,302 | Train Epoch: 1 [3000/604500 (0%)]	Loss: 2.233013
+2020-06-10 00:38:47,231 | Train Epoch: 1 [4500/604500 (1%)]	Loss: 2.251559
+2020-06-10 00:38:53,180 | Train Epoch: 1 [6000/604500 (1%)]	Loss: 2.245146
+2020-06-10 00:38:59,136 | Train Epoch: 1 [7500/604500 (1%)]	Loss: 2.223646
+2020-06-10 00:39:05,101 | Train Epoch: 1 [9000/604500 (1%)]	Loss: 2.203105
+2020-06-10 00:39:11,075 | Train Epoch: 1 [10500/604500 (2%)]	Loss: 2.185823
+2020-06-10 00:39:17,051 | Train Epoch: 1 [12000/604500 (2%)]	Loss: 2.173856
+2020-06-10 00:39:23,036 | Train Epoch: 1 [13500/604500 (2%)]	Loss: 2.167156
+2020-06-10 00:39:29,027 | Train Epoch: 1 [15000/604500 (2%)]	Loss: 2.146122
+2020-06-10 00:39:35,021 | Train Epoch: 1 [16500/604500 (3%)]	Loss: 2.107477
+2020-06-10 00:39:41,017 | Train Epoch: 1 [18000/604500 (3%)]	Loss: 2.099621
+2020-06-10 00:39:47,012 | Train Epoch: 1 [19500/604500 (3%)]	Loss: 2.030184
+2020-06-10 00:39:53,009 | Train Epoch: 1 [21000/604500 (3%)]	Loss: 2.014685
+2020-06-10 00:39:59,008 | Train Epoch: 1 [22500/604500 (4%)]	Loss: 1.928061
+2020-06-10 00:40:05,019 | Train Epoch: 1 [24000/604500 (4%)]	Loss: 1.889361
+2020-06-10 00:40:11,030 | Train Epoch: 1 [25500/604500 (4%)]	Loss: 1.866590
+2020-06-10 00:40:17,044 | Train Epoch: 1 [27000/604500 (4%)]	Loss: 1.804773
+2020-06-10 00:40:23,058 | Train Epoch: 1 [28500/604500 (5%)]	Loss: 1.814827
+2020-06-10 00:40:29,075 | Train Epoch: 1 [30000/604500 (5%)]	Loss: 1.783904
+2020-06-10 00:40:35,094 | Train Epoch: 1 [31500/604500 (5%)]	Loss: 1.740354
+2020-06-10 00:40:41,114 | Train Epoch: 1 [33000/604500 (5%)]	Loss: 1.687585
+2020-06-10 00:40:47,137 | Train Epoch: 1 [34500/604500 (6%)]	Loss: 1.652721
+2020-06-10 00:40:53,382 | Train Epoch: 1 [36000/604500 (6%)]	Loss: 1.632107
+2020-06-10 00:41:00,235 | Train Epoch: 1 [37500/604500 (6%)]	Loss: 1.633478
+2020-06-10 00:41:06,269 | Train Epoch: 1 [39000/604500 (6%)]	Loss: 1.583258
+2020-06-10 00:41:12,294 | Train Epoch: 1 [40500/604500 (7%)]	Loss: 1.555774
+2020-06-10 00:41:18,317 | Train Epoch: 1 [42000/604500 (7%)]	Loss: 1.565247
+2020-06-10 00:41:24,343 | Train Epoch: 1 [43500/604500 (7%)]	Loss: 1.514464
+2020-06-10 00:41:30,361 | Train Epoch: 1 [45000/604500 (7%)]	Loss: 1.592764
+2020-06-10 00:41:36,416 | Train Epoch: 1 [46500/604500 (8%)]	Loss: 1.528408
+2020-06-10 00:41:42,443 | Train Epoch: 1 [48000/604500 (8%)]	Loss: 1.431970
+2020-06-10 00:41:48,468 | Train Epoch: 1 [49500/604500 (8%)]	Loss: 1.476902
+2020-06-10 00:41:54,494 | Train Epoch: 1 [51000/604500 (8%)]	Loss: 1.435631
+2020-06-10 00:42:00,519 | Train Epoch: 1 [52500/604500 (9%)]	Loss: 1.481053
+2020-06-10 00:42:06,552 | Train Epoch: 1 [54000/604500 (9%)]	Loss: 1.488399
+2020-06-10 00:42:12,576 | Train Epoch: 1 [55500/604500 (9%)]	Loss: 1.446824
+2020-06-10 00:42:18,599 | Train Epoch: 1 [57000/604500 (9%)]	Loss: 1.529096
+2020-06-10 00:42:24,627 | Train Epoch: 1 [58500/604500 (10%)]	Loss: 1.435579
+2020-06-10 00:42:30,653 | Train Epoch: 1 [60000/604500 (10%)]	Loss: 1.384304
+2020-06-10 00:42:36,678 | Train Epoch: 1 [61500/604500 (10%)]	Loss: 1.372627
+2020-06-10 00:42:42,702 | Train Epoch: 1 [63000/604500 (10%)]	Loss: 1.330868
+2020-06-10 00:42:48,725 | Train Epoch: 1 [64500/604500 (11%)]	Loss: 1.454878
+2020-06-10 00:42:54,749 | Train Epoch: 1 [66000/604500 (11%)]	Loss: 1.391196
+2020-06-10 00:43:00,772 | Train Epoch: 1 [67500/604500 (11%)]	Loss: 1.404639
+2020-06-10 00:43:06,802 | Train Epoch: 1 [69000/604500 (11%)]	Loss: 1.299975
+2020-06-10 00:43:12,832 | Train Epoch: 1 [70500/604500 (12%)]	Loss: 1.365874
+2020-06-10 00:43:18,863 | Train Epoch: 1 [72000/604500 (12%)]	Loss: 1.323704
+2020-06-10 00:43:24,889 | Train Epoch: 1 [73500/604500 (12%)]	Loss: 1.383469
+2020-06-10 00:43:30,916 | Train Epoch: 1 [75000/604500 (12%)]	Loss: 1.382751
+2020-06-10 00:43:36,943 | Train Epoch: 1 [76500/604500 (13%)]	Loss: 1.351063
+2020-06-10 00:43:42,974 | Train Epoch: 1 [78000/604500 (13%)]	Loss: 1.283983
+2020-06-10 00:43:49,006 | Train Epoch: 1 [79500/604500 (13%)]	Loss: 1.346089
+2020-06-10 00:43:55,038 | Train Epoch: 1 [81000/604500 (13%)]	Loss: 1.402390
+2020-06-10 00:44:01,075 | Train Epoch: 1 [82500/604500 (14%)]	Loss: 1.275778
+2020-06-10 00:44:07,118 | Train Epoch: 1 [84000/604500 (14%)]	Loss: 1.267698
+2020-06-10 00:44:13,165 | Train Epoch: 1 [85500/604500 (14%)]	Loss: 1.342565
+2020-06-10 00:44:19,211 | Train Epoch: 1 [87000/604500 (14%)]	Loss: 1.301166
+2020-06-10 00:44:25,251 | Train Epoch: 1 [88500/604500 (15%)]	Loss: 1.200710
+2020-06-10 00:44:31,291 | Train Epoch: 1 [90000/604500 (15%)]	Loss: 1.319880
+2020-06-10 00:44:37,335 | Train Epoch: 1 [91500/604500 (15%)]	Loss: 1.251419
+2020-06-10 00:44:43,380 | Train Epoch: 1 [93000/604500 (15%)]	Loss: 1.295593
+2020-06-10 00:44:49,424 | Train Epoch: 1 [94500/604500 (16%)]	Loss: 1.286708
+2020-06-10 00:44:55,467 | Train Epoch: 1 [96000/604500 (16%)]	Loss: 1.316676
+2020-06-10 00:45:01,513 | Train Epoch: 1 [97500/604500 (16%)]	Loss: 1.327888
+2020-06-10 00:45:07,561 | Train Epoch: 1 [99000/604500 (16%)]	Loss: 1.353964
+2020-06-10 00:45:13,608 | Train Epoch: 1 [100500/604500 (17%)]	Loss: 1.286875
+2020-06-10 00:45:19,649 | Train Epoch: 1 [102000/604500 (17%)]	Loss: 1.149192
+2020-06-10 00:45:25,693 | Train Epoch: 1 [103500/604500 (17%)]	Loss: 1.259193
+2020-06-10 00:45:31,734 | Train Epoch: 1 [105000/604500 (17%)]	Loss: 1.283497
+2020-06-10 00:45:37,779 | Train Epoch: 1 [106500/604500 (18%)]	Loss: 1.240244
+2020-06-10 00:45:43,829 | Train Epoch: 1 [108000/604500 (18%)]	Loss: 1.234728
+2020-06-10 00:45:49,916 | Train Epoch: 1 [109500/604500 (18%)]	Loss: 1.326678

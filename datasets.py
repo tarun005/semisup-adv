@@ -56,7 +56,7 @@ class SemiSupervisedDataset(Dataset):
         self.targets = list(self.targets)
 
         if train and add_svhn_extra:
-            svhn_extra = SVHN(split='svhn_aug', **kwargs)
+            svhn_extra = SVHN(split='noise_20p', **kwargs)
             self.data = np.concatenate([self.data, svhn_extra.data])
             self.targets.extend(svhn_extra.labels)
         

@@ -37,7 +37,9 @@ class SVHN(data.Dataset):
     def __init__(self, root, split='train', transform=None, target_transform=None):
         # super(SVHN, self).__init__(root, transform=transform,
         #                            target_transform=target_transform)
-        split_list = {"train":"train" , "test":"test" , "extra_svhn":"extra", "extra_synth":"synth_train" , "svhn_aug":"svhn_augmented" , "syn_aug":"syndigit_augmented"}
+        split_list = {"train":"train" , "test":"test" , "extra_svhn":"extra", "extra_synth":"synth_train" , "svhn_aug":"svhn_augmented" , "syn_aug":"syndigit_augmented",
+                            "noise_1p":"svhn_noiseaug_1p" , "noise_5p":"svhn_noiseaug_5p" , 
+                                "noise_10p":"svhn_noiseaug_10p" , "noise_20p":"svhn_noiseaug_20p"}
 
         assert split in split_list
 

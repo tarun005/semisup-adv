@@ -31,7 +31,7 @@ from cutout import Cutout
 
 import logging
 
-os.environ["CUDA_VISIBLE_DEVICES"]= "6" #str(args.gpu)
+os.environ["CUDA_VISIBLE_DEVICES"]= "4" #str(args.gpu)
 
 
 # ----------------------------- CONFIGURATION ----------------------------------

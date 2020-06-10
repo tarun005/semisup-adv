@@ -1,4 +1,6 @@
 *.npy
+*.out
+*.pyc
 *.npz
 *.pt
 *.pth

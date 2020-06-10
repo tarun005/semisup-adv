@@ -1,0 +1,35 @@
+2020-06-10 00:44:08,506 | Robust self-training
+2020-06-10 00:44:08,507 | Args: Namespace(autoaugment=False, aux_data_filename=None, aux_take_amount=None, batch_size=300, beta=6.0, cutout=False, data_dir='/newfoundland/tarun/datasets/Digits/SVHN/', dataset='svhn', distance='l_inf', entropy_weight=0.0, epochs=120, epsilon=0.031, eval_attack_batches=1, eval_freq=4, log_interval=5, loss='trades', lr=0.1, lr_schedule='cosine', model='wrn-40-2', model_dir='svhn_aug_20p_noise_RST_adv', momentum=0.9, nesterov=True, normalize_input=False, overwrite=False, pgd_num_steps=10, pgd_step_size=0.007, remove_pseudo_labels=False, save_freq=25, seed=1, svhn_extra=True, test_batch_size=512, train_eval_batches=None, unsup_fraction=0.5, weight_decay=0.0005)
+2020-06-10 00:44:12,282 | --Training set--
+2020-06-10 00:44:12,283 | Number of training samples: 604388
+2020-06-10 00:44:12,283 | Number of supervised samples: 604388
+2020-06-10 00:44:12,283 | Number of unsup samples: 0
+2020-06-10 00:44:12,343 | Label (and pseudo-label) histogram: ((0, 51407), (1, 96980), (2, 80734), (3, 67307), (4, 58409), (5, 60750), (6, 49953), (7, 51517), (8, 44196), (9, 43135))
+2020-06-10 00:44:12,343 | Shape of training data: (604388, 3, 32, 32)
+2020-06-10 00:44:13,004 | --Test set--
+2020-06-10 00:44:13,004 | Number of samples: 26032
+2020-06-10 00:44:13,007 | Label histogram: ((0, 1744), (1, 5099), (2, 4149), (3, 2882), (4, 2523), (5, 2384), (6, 1977), (7, 2019), (8, 1660), (9, 1595))
+2020-06-10 00:44:13,007 | Shape of data: (26032, 3, 32, 32)
+2020-06-10 00:44:16,544 | --Training set--
+2020-06-10 00:44:16,544 | Number of training samples: 604388
+2020-06-10 00:44:16,544 | Number of supervised samples: 604388
+2020-06-10 00:44:16,544 | Number of unsup samples: 0
+2020-06-10 00:44:16,603 | Label (and pseudo-label) histogram: ((0, 51407), (1, 96980), (2, 80734), (3, 67307), (4, 58409), (5, 60750), (6, 49953), (7, 51517), (8, 44196), (9, 43135))
+2020-06-10 00:44:16,603 | Shape of training data: (604388, 3, 32, 32)
+2020-06-10 00:44:18,749 | Setting learning rate to 0.1
+2020-06-10 00:44:22,378 | Train Epoch: 1 [0/604500 (0%)]	Loss: 2.359058
+2020-06-10 00:44:28,120 | Train Epoch: 1 [1500/604500 (0%)]	Loss: 2.272706
+2020-06-10 00:44:33,879 | Train Epoch: 1 [3000/604500 (0%)]	Loss: 2.259965
+2020-06-10 00:44:39,649 | Train Epoch: 1 [4500/604500 (1%)]	Loss: 2.253124
+2020-06-10 00:44:45,435 | Train Epoch: 1 [6000/604500 (1%)]	Loss: 2.244838
+2020-06-10 00:44:51,224 | Train Epoch: 1 [7500/604500 (1%)]	Loss: 2.233024
+2020-06-10 00:44:57,026 | Train Epoch: 1 [9000/604500 (1%)]	Loss: 2.229366
+2020-06-10 00:45:02,834 | Train Epoch: 1 [10500/604500 (2%)]	Loss: 2.191967
+2020-06-10 00:45:08,648 | Train Epoch: 1 [12000/604500 (2%)]	Loss: 2.220490
+2020-06-10 00:45:14,472 | Train Epoch: 1 [13500/604500 (2%)]	Loss: 2.193978
+2020-06-10 00:45:20,303 | Train Epoch: 1 [15000/604500 (2%)]	Loss: 2.183789
+2020-06-10 00:45:26,141 | Train Epoch: 1 [16500/604500 (3%)]	Loss: 2.175743
+2020-06-10 00:45:31,981 | Train Epoch: 1 [18000/604500 (3%)]	Loss: 2.173108
+2020-06-10 00:45:37,826 | Train Epoch: 1 [19500/604500 (3%)]	Loss: 2.085092
+2020-06-10 00:45:43,687 | Train Epoch: 1 [21000/604500 (3%)]	Loss: 2.111116
+2020-06-10 00:45:49,547 | Train Epoch: 1 [22500/604500 (4%)]	Loss: 2.108398
