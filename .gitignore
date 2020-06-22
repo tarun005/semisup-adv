@@ -1,6 +1,7 @@
 *.npy
 *.out
 *.pyc
+*.tar
 *.npz
 *.pt
 *.pth
